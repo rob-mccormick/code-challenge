@@ -5,7 +5,7 @@ require "file_scraper"
 RSpec.describe FileScraper do
   before :all do
     path = "./files/van-gogh-paintings.html"
-    json_response = FileScraper.get(path)
+    json_response = FileScraper.run(path)
     @response = JSON.parse(json_response)
   end
 
