@@ -53,10 +53,7 @@ RSpec.describe FileScraper do
       if file_path == "./files/van-gogh-paintings.html"
         it "produces the expected response" do
           @response["artworks"].each.with_index do |artwork, index|
-            expect(artwork["name"]).to eq(expected_response["artworks"][index]["name"])
-            expect(artwork["extensions"]).to eq(expected_response["artworks"][index]["extensions"])
-            expect(artwork["link"]).to eq(expected_response["artworks"][index]["link"])
-            expect(artwork["image"]).to eq(expected_response["artworks"][index]["image"])
+            expect(artwork).to eq(expected_response["artworks"][index])
           end
         end
       end

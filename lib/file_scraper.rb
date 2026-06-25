@@ -27,7 +27,7 @@ class FileScraper
         extensions: (extensions unless extensions.compact.empty?),
         link: DOMAIN_NAME + relative_path,
         image: data_image || src_image,
-      }
+      }.compact
     end
 
     JSON.generate(artworks: result)
