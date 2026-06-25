@@ -16,7 +16,7 @@ class FileScraper
 
     result = artworks.map do |artwork|
       extensions = artwork.css("img + div").children.map do |extension|
-        extension&.text unless extension&.text.empty?
+        extension.text if extension && !extension.text.empty?
       end
       name = extensions.shift
       relative_path = artwork.at("a")["href"]
