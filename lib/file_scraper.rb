@@ -12,10 +12,10 @@ class FileScraper
 
     document = Nokogiri::HTML(html)
 
-    artworks = document.css(".iELo6")
+    artworks = document.css("g-loading-icon + div").children
 
     result = artworks.map do |artwork|
-      extensions = artwork.css(".KHK6lb > div").map do |extension|
+      extensions = artwork.css("img + div").children.map do |extension|
         extension&.text unless extension&.text.empty?
       end
       name = extensions.shift
