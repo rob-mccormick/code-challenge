@@ -19,12 +19,13 @@ class FileScraper
       extensions = artwork.css(".KHK6lb > div").map { it&.text }
       name = extensions.shift
       relative_path = artwork.at("a")["href"]
-      image = artwork.at("img")["data-src"]
+      data_image = artwork.at("img")["data-src"]
+      src_image = artwork.at("img")["src"]
       {
         name:,
         extensions:,
         link: DOMAIN_NAME + relative_path,
-        image:,
+        image: data_image || src_image,
       }
     end
 

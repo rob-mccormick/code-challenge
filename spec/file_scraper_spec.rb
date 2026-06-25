@@ -5,9 +5,11 @@ require "file_scraper"
 RSpec.describe FileScraper do
   before :all do
     path = "./files/van-gogh-paintings.html"
-    json_response = FileScraper.run(path)
-    @response = JSON.parse(json_response)
+    @json_response = FileScraper.run(path)
+    @response = JSON.parse(@json_response)
   end
+
+  let(:expected_json) { File.read("./files/expected-array.json") }
 
   it "contains artworks array" do
     expect(@response["artworks"]).to be_a(Array)
@@ -39,5 +41,9 @@ RSpec.describe FileScraper do
       expect(@response["artworks"].last["image"]).to be_a(String)
       expect(@response["artworks"].last["image"]).not_to be_empty
     end
+  end
+
+  it "produces the expected JSON array" do
+    expect(@json_response).to eql(expected_json)
   end
 end
