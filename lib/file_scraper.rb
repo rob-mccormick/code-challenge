@@ -41,6 +41,8 @@ class FileScraper
     raise "Please use an HTML file" unless file_extension == "html"
 
     begin
+      # Note: Ferrum uses a Chrome or Chromium driver – you need to have one of these installed.
+      # Docs: https://docs.rubycdp.com/docs/ferrum/introduction/
       browser = Ferrum::Browser.new
       browser.go_to("file:///#{File.expand_path(file_path)}")
       browser.body
